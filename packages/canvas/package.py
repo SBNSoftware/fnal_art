@@ -4,23 +4,20 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 import os
-import sys
-
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).parents[2] / "lib"))
-from utilities import *
 
 from spack.package import *
+from spack.pkg.fnal_art.fnal_github_package import *
 
 
-class Canvas(CMakePackage):
+class Canvas(CMakePackage, FnalGithubPackage):
     """The underpinnings for the art suite."""
 
     homepage = "https://art.fnal.gov/"
-    git = "https://github.com/art-framework-suite/canvas.git"
-    url = "https://github.com/art-framework-suite/canvas/archive/refs/tags/v3_16_01.tar.gz"
+    repo = "art-framework-suite/canvas"
 
+    version_patterns = ["v3_12_04"]
+
+    version("3.17.00", sha256="05c08194b49e5467bffbd89dc99d2b7ec357c8ae021445b32a190509a9bb60dc")
     version("3.16.04", sha256="11278f758e40e96f1d1ffad61625e4bfc6067e0623cd191c6c8227c265e2c44f")
     version("3.16.03", sha256="150f82d37c402b4e428b040f047ef9e2b9613a8d8d8803aba03137a754bb7a47")
     version("3.16.01", sha256="e8eb606d38dfa8d5c56cf6074212e83cbf55de80c3bff51b1167704d9adb4169")
@@ -34,15 +31,7 @@ class Canvas(CMakePackage):
 
     version("develop", branch="develop", get_full_repo=True)
 
-    variant(
-        "cxxstd",
-        default="17",
-        values=("17", "20", "23"),
-        multi=False,
-        sticky=True,
-        description="C++ standard",
-    )
-    conflicts("cxxstd=17", when="@develop")
+    cxxstd_variant("17", "20", "23", default="17", sticky=True)
 
     depends_on("boost+date_time+test")
     depends_on("cetlib")
@@ -61,19 +50,11 @@ class Canvas(CMakePackage):
         if generator.endswith("Ninja"):
             depends_on("ninja@1.10:", type="build")
 
-    def url_for_version(self, version):
-        url = "https://github.com/art-framework-suite/canvas/archive/refs/tags/v{0}.tar.gz"
-        return url.format(version.underscored)
-
+    @cmake_preset
     def cmake_args(self):
-        return preset_args(self.stage.source_path) + [
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")
-        ]
+        return [self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")]
 
+    @sanitize_paths
     def setup_build_environment(self, env):
-        prefix = self.build_directory
         # Binaries.
-        env.prepend_path("PATH", os.path.join(prefix, "bin"))
-        # Cleanup.
-        sanitize_environments(env, "PATH")
-
+        env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))

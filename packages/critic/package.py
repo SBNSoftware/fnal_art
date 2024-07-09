@@ -4,17 +4,13 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 import os
-import sys
-
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).parents[2] / "lib"))
-from utilities import *
 
 import llnl.util.tty as tty
 
 from spack.package import *
+from spack.pkg.fnal_art.fnal_github_package import *
 from spack.util.environment import NameValueModifier
+from spack.util.prefix import Prefix
 
 
 class PrependEnv(NameValueModifier):
@@ -31,16 +27,18 @@ class PrependEnv(NameValueModifier):
             env[self.name] = self.separator.join(directories)
 
 
-class Critic(CMakePackage):
+class Critic(CMakePackage, FnalGithubPackage):
     """Compatibility tests for the art and gallery applications of the art
     suite.
     """
 
     homepage = "https://art.fnal.gov/"
-    git = "https://github.com/art-framework-suite/critic.git"
-    url = "https://github.com/art-framework-suite/critic/archive/refs/tags/v2_12_03.tar.gz"
+    repo = "art-framework-suite/critic"
+
+    version_patterns = ["v2_12_02"]
 
     version("develop", branch="develop", get_full_repo=True)
+    version("2.14.00", sha256="cefb90d3ab4de47a3a06fddf8f8c5fd4bf7fde62ab24b24a5bb1b97758c2e972")
     version("2.13.06", sha256="92359d75c947047a5a8753de3cbdcfa36dcf320420ed46ac3c0c39ea41cfb4a4")
     version("2.13.05", sha256="7f2470ef8360423e0b1f509538a1ae2df0e42cd231ea48fd2fc225b7181f96f2")
     version("2.13.03", sha256="96f62ff84e09fab7359f4d890e1bb9939cdea35b702a733663187483536da74e")
@@ -49,15 +47,8 @@ class Critic(CMakePackage):
     version("2.12.03", sha256="13ae221a5060eb37de3c57c3b74e707c3bb2bd6352995fc640bfbb6e841bcfca")
     version("2.12.02", sha256="9dc9e20c97ecd7e967851546dc12dde9a9768b95c14b8f5c64b0ef11a158730d")
 
-    variant(
-        "cxxstd",
-        default="17",
-        values=("17", "20", "23"),
-        multi=False,
-        sticky=True,
-        description="C++ standard",
-    )
-    conflicts("cxxstd=17", when="@develop")
+    cxxstd_variant("17", "20", "23", default="17", sticky=True)
+    conflicts("cxxstd=17", when="@2.14.00:")
 
     depends_on("art")
     depends_on("art-root-io")
@@ -77,22 +68,17 @@ class Critic(CMakePackage):
         if generator.endswith("Ninja"):
             depends_on("ninja@1.10:", type="build")
 
-    def url_for_version(self, version):
-        url = "https://github.com/art-framework-suite/critic/archive/refs/tags/v{0}.tar.gz"
-        return url.format(version.underscored)
-
+    @cmake_preset
     def cmake_args(self):
-        return preset_args(self.stage.source_path) + [
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")
-        ]
+        return [self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")]
 
     def setup_build_environment(self, env):
-        prefix = self.build_directory
+        prefix = Prefix(self.build_directory)
         # Binaries.
-        env.prepend_path("PATH", os.path.join(prefix, "bin"))
+        env.prepend_path("PATH", prefix.bin)
         # Ensure we can find plugin libraries.
-        env.prepend_path("CET_PLUGIN_PATH", os.path.join(prefix, "lib"))
+        env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
         # ... and in the interpreter.
         env.env_modifications.append(PrependEnv("LD_LIBRARY_PATH", "CET_PLUGIN_PATH"))
         # Cleanup.
-        sanitize_environments(env, "PATH", "CET_PLUGIN_PATH", "LD_LIBRARY_PATH")
+        sanitize_environment(env, "PATH", "CET_PLUGIN_PATH", "LD_LIBRARY_PATH")

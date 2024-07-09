@@ -11,8 +11,8 @@ class MuseExternals(BundlePackage):
 
     homepage = "https://mu2ewiki.fnal.gov/wiki/Muse"
 
-    version("0.1")
-    version("1.0")
+    version("p042")
+    version("p041")
     version("develop")
 
     maintainers = ["marcmengel", "rclee", "kutschke"]
@@ -56,7 +56,7 @@ class MuseExternals(BundlePackage):
         depends_on("vecgeom", type=("build", "run"))
         depends_on("xerces-c", type=("build", "run"))
 
-    with when("@1.0"):
+    with when("@p042"):
         depends_on("artdaq-core-mu2e@1.09.02", type=("build", "run"))
         depends_on("artdaq-core@3.09.13", type=("build", "run"))
         depends_on("art-root-io@1.12.04", type=("build", "run"))
@@ -89,17 +89,14 @@ class MuseExternals(BundlePackage):
         depends_on("postgresql@15.2", type=("build", "run"))
         depends_on("python@3.9.15", type=("build", "run"))
         depends_on("root@6.28.04", type=("build", "run"))
-        depends_on("root@6.28.03:", type=("build", "run"))
         depends_on("sqlite@3.40.1", type=("build", "run"))
         depends_on("intel-tbb-oneapi@2021.9.0", type=("build", "run"))
         depends_on("trace@v3_17_09", type=("build", "run"))
         depends_on("vecgeom", type=("build", "run"))
         depends_on("xerces-c@3.2.3", type=("build", "run"))
 
-    with when("@0.1"):
-        # depends_on("artdaq-core-mu2e@1.09.02", type=("build","run"))
+    with when("@p041"):
         depends_on("artdaq-core-mu2e@1.08.08", type=("build", "run"))
-        # depends_on("artdaq-core@3.09.13", type=("build","run"))
         depends_on("artdaq-core@v3_09_09", type=("build", "run"))
         depends_on("art-root-io@1.12.04", type=("build", "run"))
         depends_on("art@3.13.02", type=("build", "run"))
@@ -126,13 +123,11 @@ class MuseExternals(BundlePackage):
         depends_on("hep-concurrency@1.09.01", type=("build", "run"))
         depends_on("kinkal@2.03.01", type=("build", "run"))
         depends_on("messagefacility@2.10.02", type=("build", "run"))
-        # depends_on("mu2e-pcie-utils@2.08.05", type=("build","run"))
         depends_on("mu2e-pcie-utils@2.08.04", type=("build", "run"))
         depends_on("openblas@0.3.23", type=("build", "run"))
         depends_on("postgresql@15.2", type=("build", "run"))
         depends_on("python@3.9.15", type=("build", "run"))
         depends_on("root@6.28.04", type=("build", "run"))
-        depends_on("root@6.28.03:", type=("build", "run"))
         depends_on("sqlite@3.40.1", type=("build", "run"))
         depends_on("intel-tbb-oneapi@2021.9.0", type=("build", "run"))
         depends_on("trace@v3_17_09", type=("build", "run"))

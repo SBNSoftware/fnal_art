@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
+import os
 
 
 class Jsonnet(Package):
@@ -27,7 +28,7 @@ class Jsonnet(Package):
     )
 
     def patch(self):
-        with( when("@:0.19.1 %gcc@13:")):
+        with when("@:0.19.1 %gcc@13:"):
             filter_file(
                 r"#include \<cstring\>",
                 "#include <cstdint>\n#include <cstring>",
@@ -36,7 +37,7 @@ class Jsonnet(Package):
 
 
     def install(self, spec, prefix):
-        "Install JSonnet"
+        "Install Jsonnet"
         # This can use bazel but we fall back to the crude Makefile in order to
         # avoid the dependency on bazel which brings in JDK.
         make()
@@ -52,7 +53,8 @@ class Jsonnet(Package):
         install("include/libjsonnet++.h", prefix.include)
         libs = find(prefix.lib, "libjsonnet*")
         for lib in libs:
-            symlink(lib, prefix.lib + "%s.0" % lib)
+            symlink(lib, prefix.lib + "/%s.0" % os.path.basename(lib))
+
 
     def setup_build_environment(self, spack_env):
         for cflag in ("-O3", "-DNDEBUG", "-g", "-fno-omit-frame-pointer"):

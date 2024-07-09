@@ -5,25 +5,21 @@
 
 
 import os
-import sys
-
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).parents[2] / "lib"))
-from utilities import *
 
 from spack.package import *
+from spack.pkg.fnal_art.fnal_github_package import *
+from spack.util.prefix import Prefix
 
 
-class Messagefacility(CMakePackage):
+class Messagefacility(CMakePackage, FnalGithubPackage):
     """A configurable message logging facility for the art suite."""
 
     homepage = "https://art.fnal.gov/"
-    git = "https://github.com/art-framework-suite/messagefacility.git"
-    url = (
-        "https://github.com/art-framework-suite/messagefacility/archive/refs/tags/v2_10_03.tar.gz"
-    )
+    repo = "art-framework-suite/messagefacility"
 
+    version_patterns = ["v2_08_00"]
+
+    version("2.11.00", sha256="6b3f7a8ef870bbea7e1127f4f841d1ecac4fca57509b4108cd284d6b7813d360")
     version("2.10.05", sha256="cd99c85b81f7d4d23195fb6f84d8815c73d6eedbb4c543dc10c9616a5c31368d")
     version("2.10.04", sha256="5c63a26c974c69677eeb8c927a581aa40bd7ff8f6abf6ebcdd20cc423e145df9")
     version("2.10.03", sha256="94700d414a59111200dff1d77839d2edcb72f05530c039f6bdddb470be6e2252")
@@ -35,15 +31,8 @@ class Messagefacility(CMakePackage):
     version("2.08.00", sha256="a2c833071dfe7538c40a0024d15f19ba062fd5f56b26f83f5cb739c12ff860ec")
     version("develop", branch="develop")
 
-    variant(
-        "cxxstd",
-        default="17",
-        values=("17", "20", "23"),
-        multi=False,
-        sticky=True,
-        description="C++ standard",
-    )
-    conflicts("cxxstd=17", when="@develop")
+    cxxstd_variant("17", "20", "23", default="17", sticky=True)
+    conflicts("cxxstd=17", when="@2.11.00:")
 
     depends_on("boost+filesystem+program_options+system")
     depends_on("catch2@3.3.0:", when="@2.10.00:")
@@ -65,43 +54,32 @@ class Messagefacility(CMakePackage):
         if generator.endswith("Ninja"):
             depends_on("ninja@1.10:", type="build")
 
-    def url_for_version(self, version):
-        url = (
-            "https://github.com/art-framework-suite/messagefacility/archive/refs/tags/v{0}.tar.gz"
-        )
-        return url.format(version.underscored)
-
+    @cmake_preset
     def cmake_args(self):
-        return preset_args(self.stage.source_path) + [
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")
-        ]
+        return [self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")]
 
+    @sanitize_paths
     def setup_build_environment(self, env):
-        prefix = self.build_directory
+        prefix = Prefix(self.build_directory)
         # Binaries.
-        env.prepend_path("PATH", os.path.join(prefix, "bin"))
-        # Ensure we can find plugin libraries.
-        env.prepend_path("CET_PLUGIN_PATH", os.path.join(prefix, "lib"))
-        # Perl modules.
-        env.prepend_path("PERL5LIB", os.path.join(prefix, "perllib"))
-        # Cleaup.
-        sanitize_environments(env, "PATH", "CET_PLUGIN_PATH", "PERL5LIB")
-
-    def setup_run_environment(self, env):
-        prefix = self.prefix
         env.prepend_path("PATH", prefix.bin)
         # Ensure we can find plugin libraries.
         env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
         # Perl modules.
-        env.prepend_path("PERL5LIB", os.path.join(prefix, "perllib"))
-        # Cleaup.
-        sanitize_environments(env, "CET_PLUGIN_PATH", "PERL5LIB")
+        env.prepend_path("PERL5LIB", prefix.perllib)
 
+    @sanitize_paths
+    def setup_run_environment(self, env):
+        prefix = self.prefix
+        # Ensure we can find plugin libraries.
+        env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
+        # Perl modules.
+        env.prepend_path("PERL5LIB", prefix.perllib)
+
+    @sanitize_paths
     def setup_dependent_build_environment(self, env, dependent_spec):
         prefix = self.prefix
         # Ensure we can find plugin libraries.
         env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
         # Perl modules.
-        env.prepend_path("PERL5LIB", os.path.join(prefix, "perllib"))
-        # Cleaup.
-        sanitize_environments(env, "CET_PLUGIN_PATH", "PERL5LIB")
+        env.prepend_path("PERL5LIB", prefix.perllib)

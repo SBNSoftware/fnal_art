@@ -66,7 +66,7 @@ class Cetbuildtools(CMakePackage):
             )
         )
 
-    depends_on("cetmodules@3.13.02")
+    depends_on("cetmodules@3.13.02:")
     depends_on("cmake@3.21:", type="build")
 
     maintainers = ["marc_mengel"]

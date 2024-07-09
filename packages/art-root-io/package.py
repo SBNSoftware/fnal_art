@@ -4,24 +4,22 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 import os
-import sys
-
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).parents[2] / "lib"))
-from utilities import *
 
 from spack.package import *
+from spack.pkg.fnal_art.fnal_github_package import *
+from spack.util.prefix import Prefix
 
 
-class ArtRootIo(CMakePackage):
+class ArtRootIo(CMakePackage, FnalGithubPackage):
     """Root-based input/output for the art suite."""
 
     homepage = "https://art.fnal.gov/"
-    git = "https://github.com/art-framework-suite/art-root-io.git"
-    url = "https://github.com/art-framework-suite/art-root-io/archive/refs/tags/v1_13_01.tar.gz"
+    repo = "art-framework-suite/art-root-io"
+
+    version_patterns = ["v1_08_03"]
 
     version("develop", branch="develop", get_full_repo=True)
+    version("1.14.00", sha256="c5ae18411766c088eee1643eeb8a5d85683902134529eb6d6e7540368c8e5d6e")
     version("1.13.06", sha256="4216491031b547a46ee53b85db2905f3be98b81d3bfae3d57a1830065e6c0b7a")
     version("1.13.05", sha256="b60b44776c6b9ffb4ea554b30f4c5c58e9f297ce546d5b0ac30b6c47f1e102bb")
     version("1.13.03", sha256="507181c5caa8a53017783415509b3a01d152864a6ed0334c925eac11d47f6fb9")
@@ -35,17 +33,11 @@ class ArtRootIo(CMakePackage):
     version("1.08.05", sha256="77f58e4200f699dcb324a3a9fc9e59562d2a1721a34a6db43fdb435853890d21")
     version("1.08.03", sha256="fefdb0803bc139a65339d9fa1509f2e9be1c5613b64ec1ec84e99f404663e4bf")
 
-    variant(
-        "cxxstd",
-        default="17",
-        values=("17", "20", "23"),
-        multi=False,
-        sticky=True,
-        description="C++ standard",
-    )
-    conflicts("cxxstd=17", when="@develop")
+    cxxstd_variant("17", "20", "23", default="17", sticky=True)
+    conflicts("cxxstd=17", when="@1.14.00:")
 
     depends_on("art")
+    depends_on("boost@:1.82", when="@:1.14")
     depends_on("boost+filesystem+date_time+program_options")
     depends_on("canvas")
     depends_on("canvas-root-io")
@@ -67,33 +59,24 @@ class ArtRootIo(CMakePackage):
         if generator.endswith("Ninja"):
             depends_on("ninja@1.10:", type="build")
 
-    def url_for_version(self, version):
-        url = "https://github.com/art-framework-suite/art-root-io/archive/refs/tags/v{0}.tar.gz"
-        return url.format(version.underscored)
-
+    @cmake_preset
     def cmake_args(self):
-        return preset_args(self.stage.source_path) + [
-            "--trace-expand",
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
-        ]
+        return ["--trace-expand", self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")]
 
+    @sanitize_paths
     def setup_build_environment(self, env):
-        prefix = self.build_directory
+        prefix = Prefix(self.build_directory)
         # Binaries.
-        env.prepend_path("PATH", os.path.join(prefix, "bin"))
+        env.prepend_path("PATH", prefix.bin)
         # Ensure we can find plugin libraries.
-        env.prepend_path("CET_PLUGIN_PATH", os.path.join(prefix, "lib"))
-        # Cleanup.
-        sanitize_environments(env, "PATH", "CET_PLUGIN_PATH")
+        env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
 
+    @sanitize_paths
     def setup_run_environment(self, env):
-        prefix = self.prefix
         # Ensure we can find plugin libraries.
-        env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
+        env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)
 
+    @sanitize_paths
     def setup_dependent_build_environment(self, env, dependent_spec):
-        prefix = self.prefix
         # Ensure we can find plugin libraries.
-        env.prepend_path("CET_PLUGIN_PATH", prefix.lib)
-        # Cleanup.
-        sanitize_environments(env, "CET_PLUGIN_PATH")
+        env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)

@@ -32,6 +32,7 @@ class Wirecell(Package):
     homepage = "https://wirecell.github.io"
     url = "https://github.com/WireCell/wire-cell-toolkit/archive/refs/tags/0.13.0.tar.gz"
 
+    version("0.27.1", sha256="a8410a9e0524570e811f5cca2ea9fc636e48c048a5e67c5cee567b935515e176")
     version("0.24.3", sha256="040d819a3a81b953a42c8b4bb898acf6978cee45beea0361a2f3cdb602a6028c")
     version("0.24.1", sha256="0467a4dff51abac3661aa99c5f3cc5de1ba1607a7f357631a2fbf7dcdf01c8a9")
     version("0.17.0", sha256="f2807adb83c8c6960ccefe8002bd015d646a96ad181d2092848d2461b3b81eea")
@@ -77,6 +78,14 @@ class Wirecell(Package):
                 "#include <typeinfo>",
                 "#include <typeinfo>\n#include<cstdint>",
                 "util/inc/WireCellUtil/Dtype.h",
+            )
+
+    def patch(self):
+        with when("@:0.27.1 %gcc@12:"):
+            filter_file(
+                "#include <iomanip>",
+                "#include <iomanip>\n#include<sstream>",
+                "aux/src/Logger.cxx",
             )
 
     def install(self, spec, prefix):
