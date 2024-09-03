@@ -25,6 +25,7 @@ class Genie(AutotoolsPackage):
             version.underscored
         )
 
+    version("3.04.02", sha256="c5935aea86d2ba9897ab55bb581622c561575957d19e572691d3bc0833ed9512", preferred=True)
     version("3.04.00", sha256="72cf8a119cc59d03763b11afad1a82c0974a06677bf1c154b7c2a90d9f1529c1")
     version("3.00.06", sha256="ab56ea85d0c1d09029254365bfe75a1427effa717389753b9e0c1b6c2eaa5eaf")
     version("3.00.04", sha256="53f034618fef9f7f0e17d1c4ed72743e4bba590e824b795177a1a8a8486c861e")
@@ -67,9 +68,15 @@ class Genie(AutotoolsPackage):
 
     variant("lhapdf", default=True) 
 
+    # Use mainline spack gettext for lhapdf
     depends_on("lhapdf" , when="+lhapdf")
 
-    depends_on("root+pythia6")
+    # Issues caused by default root cxxstd being 11
+    depends_on("root @6.24.08:6.28.12 +pythia6 cxxstd=14", when="cxxstd=14")
+    depends_on("root @6.24.08:6.28.12 +pythia6 cxxstd=17", when="cxxstd=17")
+    depends_on("root @6.24.08:6.28.12 +pythia6 cxxstd=17", when="cxxstd=default")
+    depends_on("root @6.24.08:6.28.12 +pythia6 cxxstd=20", when="cxxstd=20")
+
     depends_on("pythia6+root")
     depends_on("libxml2")
     depends_on("log4cpp")
@@ -81,10 +88,10 @@ class Genie(AutotoolsPackage):
     patch("patch/sles-cnl.patch", when="platform=cray")
     patch("patch/root_subdir.patch")
 
-    patch("patch/GENIE-Generator.patch", when="@3.04.00")
-    patch("patch/GENIE-Reweight.patch", when="@3.04.00", level=0)
+    patch("patch/GENIE-Generator.patch", when="@3.04.02")
+    patch("patch/GENIE-Reweight.patch", when="@3.04.02", level=0)
 
-    @when("os=almalinux9")
+    # @when("os=almalinux9") patch should be applied on polaris too
     def patch(self):
         filter_file(r'-lnsl','','src/make/Make.include')
 
@@ -174,6 +181,8 @@ class Genie(AutotoolsPackage):
         mkdirp(prefix.lib64)
         mkdirp(prefix.include)
         mkdirp(prefix.src)
+        mkdirp(prefix.config) # necessary for tune functionality
+        mkdirp(prefix.data) # necessary for PDG library lookup
 
         with working_dir(self.build_directory):
             make("install")
@@ -188,8 +197,12 @@ class Genie(AutotoolsPackage):
             os.path.join(self.prefix, "src", "scripts"),
         )
         src_make_dir = os.path.join(self.prefix, "src", "make", "")
+        config_dir = os.path.join(self.prefix, "config", "")
+        data_dir = os.path.join(self.prefix, "data", "")
         # filesystem.mkdirp(src_make_dir)
         filesystem.install_tree(os.path.join(self.stage.source_path, "src", "make"), src_make_dir)
+        filesystem.install_tree(os.path.join(self.stage.source_path, "config"), config_dir)
+        filesystem.install_tree(os.path.join(self.stage.source_path, "data"), data_dir)
 
     def setup_build_environment(self, spack_env):
         spack_env.set("ROOT_INCLUDE_PATH", os.path.join(self.stage.source_path, "src"))

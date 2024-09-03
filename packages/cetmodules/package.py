@@ -20,15 +20,17 @@ class Cetmodules(CMakePackage):
     maintainers = ["chissg", "gartung", "marcmengel", "vitodb"]
 
     version("develop", branch="develop", get_full_repo=True)
-    version("3.13.02", sha256="11bc4b55a3b07dfe1187d3f04c977caec9fb06d412ed50241f30507398cc7cac")
-    version("3.19.02", sha256="214172a59f4c3875a5d7c2617b9f50ed471c86404d85e2e5c72cadf5b499cdc6")
-    version("3.21.00", sha256="429ddecf2e905a6a3156c267005d17cd6e160533f28bcef0be40a9d0057e95e4")
-    version("3.21.01", sha256="9f4b845f9ed09fb3a8ee7864ac487afd08a5b3e64abf394831ee927f91b08ebc")
-    version("3.21.02", sha256="255d6d6c2455217734b208fc90919b90bc7c0f9a59a4706d329c642bff51f004")
-    version("3.22.01", sha256="c72c47328adc0c95f905aae119c76d35513a0677f20163f0ef25a82bd0f72082")
-    version("3.22.02", sha256="bbd6a80ab3c495e49b3545230c97ae880755a5f1d39b71d89f07297bf835e5da")
-    version("3.24.01", sha256="6ef8b522b02298a787a318cda898deedc250cdd336dc3168fad934ef607b5916")
+
+    version("3.26.00", sha256="0acf1a916cb378dba819dd954de1e5279db5053658827844886006466cec3dc8")
     version("3.25.00", sha256="9574d9f8e5757d79c11d6fb3b95c3227aa0028960733715c3e6b6b25a51ff5c5")
+    version("3.24.01", sha256="6ef8b522b02298a787a318cda898deedc250cdd336dc3168fad934ef607b5916")
+    version("3.22.02", sha256="bbd6a80ab3c495e49b3545230c97ae880755a5f1d39b71d89f07297bf835e5da")
+    version("3.22.01", sha256="c72c47328adc0c95f905aae119c76d35513a0677f20163f0ef25a82bd0f72082")
+    version("3.21.02", sha256="255d6d6c2455217734b208fc90919b90bc7c0f9a59a4706d329c642bff51f004")
+    version("3.21.01", sha256="9f4b845f9ed09fb3a8ee7864ac487afd08a5b3e64abf394831ee927f91b08ebc")
+    version("3.21.00", sha256="429ddecf2e905a6a3156c267005d17cd6e160533f28bcef0be40a9d0057e95e4")
+    version("3.19.02", sha256="214172a59f4c3875a5d7c2617b9f50ed471c86404d85e2e5c72cadf5b499cdc6")
+    version("3.13.02", sha256="11bc4b55a3b07dfe1187d3f04c977caec9fb06d412ed50241f30507398cc7cac")
 
     variant(
         "versioned-docs", default=False, description="build versioned docs with a landing page"
