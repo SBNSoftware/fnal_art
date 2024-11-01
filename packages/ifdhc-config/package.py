@@ -17,6 +17,8 @@ class IfdhcConfig(Package):
     git_base = "https://cdcvs.fnal.gov/projects/ifdhc/ifdhc.git"
     url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/ifdhc.v2_5_4.tbz2"
 
+    version("2.7.2", sha256="03f1211c89c49dc4669344fce5321d3c45fcf68bf46a84368010edd2dcdb2630")
+    version("2.7.1", sha256="cb8726506546ff49f8134024171dfc389dbfff74e66a19ba1a49aea767f5f510")
     version("2.6.20", sha256="54cffb88be5c085dd2f3246507cf850299b780e2ab16cd8abce4360e200b4044")
     version("2.6.19", sha256="5499391378d6769da0b94b0e8eaea358d6c7be40673e4c97c5580c4e94bdaa24")
     version("2.6.11", sha256="988eb6bd2124174e0956b4415edcc3671ac87896a64852e9e99d8628c4fa1334")

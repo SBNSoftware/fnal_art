@@ -17,6 +17,8 @@ class Ifdhc(MakefilePackage):
     git_base = "https://cdcvs.fnal.gov/projects/ifdhc/ifdhc.git"
     url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/ifdhc.v2_5_2.tbz2"
 
+    version("2.7.2", sha256="03f1211c89c49dc4669344fce5321d3c45fcf68bf46a84368010edd2dcdb2630")
+    version("2.7.1", sha256="cb8726506546ff49f8134024171dfc389dbfff74e66a19ba1a49aea767f5f510")
     version("2.7", sha256="49c3e9fbc5a1ebb80d8fb870e45ec9faa6577c001a8a073521b071d51dd93bb8")
     version("2.6.20", sha256="54cffb88be5c085dd2f3246507cf850299b780e2ab16cd8abce4360e200b4044")
     version("2.6.19", sha256="5499391378d6769da0b94b0e8eaea358d6c7be40673e4c97c5580c4e94bdaa24")
@@ -117,7 +119,7 @@ class Ifdhc(MakefilePackage):
         run_env.prepend_path("PYTHONPATH", self.spec.prefix.lib.python)
         run_env.set("IFDHC_DIR", self.spec.prefix)
         # put ifdhc_config bin path ahead of us that we saved in os.environ...
-        run_env.prepend_path("PATH", os.environ["IFDHC_CONFIG_BIN"])
+        run_env.prepend_path("PATH", os.environ.get("IFDHC_CONFIG_BIN",""))
 
     def setup_dependent_build_environment(self, spack_env, dspec):
         spack_env.prepend_path("PATH", self.spec.prefix.bin)

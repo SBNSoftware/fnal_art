@@ -57,19 +57,7 @@ class Cetmodules(CMakePackage):
         with when("@:3.22.99"):
             depends_on("py-sphinx@:5", type="build")
 
-    perl_deps = {
-        "perl-data-dumper": ("build", "run"),
-        "perl-json": ("build", "run"),
-        "perl-list-moreutils": ("build", "run"),
-        "perl-metacpan-client": ("build", "run"),
-        "perl-path-tiny": ("build", "run"),
-        "perl-readonly": ("build", "test", "run"),
-        "perl-perl-tidy": ("build", "test", "run"),
-        "perl-task-perl-critic": ("build", "test"),
-    }
-
-#    for pkg, types in perl_deps.items():
-#        depends_on(pkg, type=types)
+    depends_on("perl", type=("build", "test"))
 
     conflicts("@:3.19.01", when="^cmake@3.24.0:")
 
