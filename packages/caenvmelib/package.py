@@ -12,6 +12,7 @@ class Caenvmelib(MakefilePackage):
     homepage = "https://www.caen.it/products/caenvmelib-library/"
     url = "https://scisoft.fnal.gov/scisoft/reference_tarballs/CAENVMELib-v4.0.1.tgz"
 
+    version("4.0.2", sha256="9049579e93fe074d8b8b91c1e58bd5ee6b48e21ffc28c20c60e935c747ab577f")
     version("4.0.1", sha256="e3e5d9950fd92a58eca0997ed09f5f14b50a1c6fbbc60d7d71c909ab31fe84d2")
     version("3.4.4", sha256="31273b99eb059d209721a82f20b74986c244a3920188e4156a44caff9e3a7c90")
 
