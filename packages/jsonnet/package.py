@@ -8,7 +8,7 @@ import os
 from spack.package import *
 
 
-class Jsonnet(Package):
+class Jsonnet(MakefilePackage):
     "A data templating language looking like JSON that produces JSON."
 
     homepage = "https://jsonnet.org"

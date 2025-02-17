@@ -41,7 +41,7 @@ class Castxml(CMakePackage):
     version("0.2.0", sha256="626c395d0d3c777b5a1582cdfc4d33d142acfb12204ebe251535209126705ec1")
 
     # FIXME: Add dependencies if required.
-    depends_on('llvm')
+    depends_on('llvm@15.0.7')
 
     def cmake_args(self):
         # FIXME: Add arguments other than
