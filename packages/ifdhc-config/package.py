@@ -18,6 +18,7 @@ class IfdhcConfig(Package):
     url = "https://github.com/fnal-fife/ifdhc/archive/refs/tags/v2_6_14.tar.gz"
     list_url = "https://github.com/fnal-fife/ifdhc/tags"
 
+    version("2.7.3", sha256="8a8caa1d14a0d39c8ccb96460b84cca51540f209535c62cd680243dc08d1db5f")
     version("2.7.2", sha256="036933c0443a4704f408aea83972954e2af6d933a7ffe61869ac4e6e6fd41256")
     version("2.7.1", sha256="4494d08c3a7927600bbcee56e65feb024b15e2d510328ec0d2cc0fcefc5cb6a7")
     version("2.6.20", sha256="54cffb88be5c085dd2f3246507cf850299b780e2ab16cd8abce4360e200b4044")
