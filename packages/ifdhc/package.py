@@ -18,6 +18,7 @@ class Ifdhc(MakefilePackage):
     url = "https://github.com/fnal-fife/ifdhc/archive/refs/tags/v2_6_14.tar.gz"
     list_url = "https://github.com/fnal-fife/ifdhc/tags"
 
+    version("2.8.0", sha256="189404744961ca049366369b71b783e57540cd4f6a45b86f0aed5f14c198d590")
     version("2.7.4", sha256="940dc661cfb5a1bf9bf7353b03b0fd732289a951ef99992327f29ce94f1cac9f")
     version("2.7.2", sha256="036933c0443a4704f408aea83972954e2af6d933a7ffe61869ac4e6e6fd41256")
     version("2.7.1", sha256="4494d08c3a7927600bbcee56e65feb024b15e2d510328ec0d2cc0fcefc5cb6a7")
@@ -98,10 +99,11 @@ class Ifdhc(MakefilePackage):
         return ("SHELL=/bin/bash", "DESTDIR={0}/".format(self.prefix), "install")
 
     @run_after("install")
-    def install_cfg(self):
-        cmd = "cp {0}/ifdh.cfg {1}/ifdh.cfg".format(self.stage.source_path, self.spec.prefix)
-        tty.warn("installing ifdh.cfg: {0}".format(cmd))
-        os.system(cmd)
+    def dont_overlap_ifdhc_config(self):
+        # we want any environments built to point at ifdhc-config for
+        # these files, not ifdhc, so don't include them in ifdhc
+        for f in [ 'www_cp.sh', 'auth_session.sh', 'decode_token.sh' ]:
+            os.unlink(os.path.join(self.spec.prefix.bin ,f))
 
     @run_after("install")
     def is_built(self):
