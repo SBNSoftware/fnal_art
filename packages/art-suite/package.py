@@ -32,7 +32,7 @@ class ArtSuite(BundlePackage):
     variant("root", default=True, description="Also bring in the ROOT IO packages")
 
     with when("@s132"):
-        depends_on("cmake@3.27.9")
+        depends_on("cmake@3.27.9:")
 
         depends_on("art@3.15.00 cxxstd=20")
         depends_on("art-root-io@1.14.00 cxxstd=20", when="+root")
@@ -57,7 +57,7 @@ class ArtSuite(BundlePackage):
         depends_on("pythia6@6.4.28")
         depends_on("python@3.9.15")
         depends_on("range-v3@0.12.0")
-        depends_on("root@6.30.06 cxxstd=20", when="+root")
+        depends_on("root@6.30.06 +http+mlp+root7+spectrum+tmva+tmva-sofie cxxstd=20", when="+root")
         depends_on("sqlite@3.40.1")
         depends_on("tbb@2021.9.0")
         depends_on("xrootd@5.5.5")
