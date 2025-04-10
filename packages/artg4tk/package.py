@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack import *
+from spack.package import *
 
 
 class Artg4tk(CMakePackage):
@@ -44,6 +44,7 @@ class Artg4tk(CMakePackage):
     )
 
     patch("cetmodules2-c06a0ed7a0a543cba5c23fc588f7dd6dcb6609e2.patch", when="@c06a0ed7a0")
+    patch("11.00.01.patch", when="@11.00.01")
     # patch('mwm.patch')
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")

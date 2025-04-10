@@ -1,0 +1,14 @@
+diff --git a/artg4tk/lists/MyG4HadronPhysicsQGSP_BERT_ArHP.hh b/artg4tk/lists/MyG4HadronPhysicsQGSP_BERT_ArHP.hh
+index bf4ae5d..2333dc2 100644
+--- a/artg4tk/lists/MyG4HadronPhysicsQGSP_BERT_ArHP.hh
++++ b/artg4tk/lists/MyG4HadronPhysicsQGSP_BERT_ArHP.hh
+@@ -84,7 +84,7 @@ public:
+ 
+ protected:
+   void Neutron() override;
+-  void ExtraConfiguration() override;
++  void ExtraConfiguration();
+ };
+ 
+ // 2002 by J.P. Wellisch
+

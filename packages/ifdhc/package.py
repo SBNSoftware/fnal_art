@@ -7,18 +7,20 @@ import os
 
 import llnl.util.tty as tty
 
-from spack import *
+from spack.package import *
 
 
 class Ifdhc(MakefilePackage):
     """Data handling client code for intensity frontier experiments"""
 
-    homepage = "https://cdcvs.fnal.gov/redmine/projects/ifdhc"
-    git_base = "https://cdcvs.fnal.gov/projects/ifdhc/ifdhc.git"
-    url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/ifdhc.v2_5_2.tbz2"
+    homepage = "https://github.com/fnal-fife/ifdhc"
+    git_base = "https://github.com/fnal-fife/ifdhc.git"
+    url = "https://github.com/fnal-fife/ifdhc/archive/refs/tags/v2_6_14.tar.gz"
+    list_url = "https://github.com/fnal-fife/ifdhc/tags"
 
-    version("2.7.2", sha256="03f1211c89c49dc4669344fce5321d3c45fcf68bf46a84368010edd2dcdb2630")
-    version("2.7.1", sha256="cb8726506546ff49f8134024171dfc389dbfff74e66a19ba1a49aea767f5f510")
+    version("2.7.4", sha256="940dc661cfb5a1bf9bf7353b03b0fd732289a951ef99992327f29ce94f1cac9f")
+    version("2.7.2", sha256="036933c0443a4704f408aea83972954e2af6d933a7ffe61869ac4e6e6fd41256")
+    version("2.7.1", sha256="4494d08c3a7927600bbcee56e65feb024b15e2d510328ec0d2cc0fcefc5cb6a7")
     version("2.7", sha256="49c3e9fbc5a1ebb80d8fb870e45ec9faa6577c001a8a073521b071d51dd93bb8")
     version("2.6.20", sha256="54cffb88be5c085dd2f3246507cf850299b780e2ab16cd8abce4360e200b4044")
     version("2.6.19", sha256="5499391378d6769da0b94b0e8eaea358d6c7be40673e4c97c5580c4e94bdaa24")
@@ -61,7 +63,7 @@ class Ifdhc(MakefilePackage):
         filter_file(r"(CFLAGS=.*) -Werror", r"\1", "util/Makefile")
 
     def url_for_version(self, version):
-        url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2"
+        url = "https://github.com/fnal-fife/ifdhc/archive/refs/tags/v{0}.tar.gz"
 
         return url.format(self.name, version.underscored)
 

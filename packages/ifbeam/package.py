@@ -3,16 +3,19 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack import *
+from spack.package import *
 
 
 class Ifbeam(MakefilePackage):
     """Data handling client code for intensity frontier experiments"""
 
-    homepage = "https://cdcvs.fnal.gov/redmine/projects/ifbeam"
-    url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/ifdhc-ifbeam.v2_5_2.tbz2"
+    homepage = "https://github.com/fnal-fife/ifbeam"
+    git_base = "https://github.com/fnal-fife/ifbeam.git"
+    url = "https://github.com/fnal-fife/ifbeam/archive/refs/tags/v2_6_2.tar.gz"
+    list_url = "https://github.com/fnal-fife/ifbeam/tags"
 
-    version("2.6.1", sha256="64eaa39f43f9e90010f0c24a45602a9f5f0a8146a6945a721628194aea40df30")
+    version("2.6.2", sha256="8297ecab83e215661097f786b88d1e1f03a50299780ff5862bf674b382288325")
+    version("2.6.1", sha256="1fc548013803f2cd9c9c93fb526e6efc3519634edff07a0455019d78cc96a77e")
     version("2.5.23", sha256="e8d11d057cbb25ec65f597c7eb9c73d463d9828c3b830866aa05e6652e305831")
     version("2.5.22", sha256="202b29e64aef1852310f0e4a550dcb47e5c6c86d6d162683f319ff4999460d12")
     version("2.5.17", sha256="7ecba2c84c585d3775a984a7de4a1152afc2ed60468cdce45bb380b6e28cab68")
@@ -42,7 +45,7 @@ class Ifbeam(MakefilePackage):
         filter_file(r'catch \(WebAPIException e\)','catch (WebAPIException &e)','src/ifbeam.cc') 
 
     def url_for_version(self, version):
-        url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2"
+        url = "https://github.com/fnal-fife/ifbeam/archive/refs/tags/v{0}.tar.gz"
         return url.format("ifdhc-" + self.name, version.underscored)
 
     @property

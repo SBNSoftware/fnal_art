@@ -3,17 +3,20 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-import llnl.util.tty as tty
-import spack.util.spack_json as sjson
-from spack.directives import variant
-from spack.util.environment import PrependPath
-from spack.package import *
-from spack.version import *
-from functools import wraps
-from pathlib import Path
-import re
 import bisect
 import functools
+import re
+from functools import wraps
+from pathlib import Path
+
+import llnl.util.tty as tty
+
+import spack.util.spack_json as sjson
+import spack.util.web
+from spack.directives import variant
+from spack.package import *
+from spack.util.environment import PrependPath
+from spack.version import *
 
 # Python versions older than 3.9 do not support functools.cache
 cache_property = getattr(functools, "cache", functools.lru_cache())
