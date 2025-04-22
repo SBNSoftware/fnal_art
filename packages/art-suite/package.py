@@ -72,7 +72,7 @@ class ArtSuite(BundlePackage):
         depends_on("catch2@3.3.2")
         depends_on("cetlib@3.18.02 cxxstd=20")
         depends_on("cetlib-except@1.09.01 cxxstd=20")
-        depends_on("cetmodules@3.24.01")
+        depends_on("cetmodules@3.24.01:")
         depends_on("clhep@2.4.7.1")
         depends_on("fftw@3.3.10")
         depends_on("fhicl-cpp@4.18.04 cxxstd=20")
