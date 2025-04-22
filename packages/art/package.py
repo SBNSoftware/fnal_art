@@ -61,6 +61,14 @@ class Art(CMakePackage, FnalGithubPackage):
     depends_on("sqlite@3.8.2:")
     depends_on("tbb")
 
+    def patch(self):
+        with(when("@3.15.00 %gcc@14:" )):
+            filter_file(
+                '#include <functional>',
+                '#include <algorithm>\n#include <functional>',
+                'art/Framework/Principal/Selector.h',
+            )
+
     if "SPACK_CMAKE_GENERATOR" in os.environ:
         generator = os.environ["SPACK_CMAKE_GENERATOR"]
         if generator.endswith("Ninja"):
