@@ -49,10 +49,6 @@ class Nucondb(MakefilePackage):
             r"catch \(WebAPIException we\)", "catch (WebAPIException &we)", "src/nucondb.cc"
         )
 
-    def url_for_version(self, version):
-        url = "https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2"
-        return url.format("ifdhc-" + self.name, version.underscored)
-
     @property
     def build_targets(self):
         cxxstd = self.spec.variants["cxxstd"].value
