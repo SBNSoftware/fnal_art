@@ -14,17 +14,16 @@ class Ifbeam(MakefilePackage):
     url = "https://github.com/fnal-fife/ifbeam/archive/refs/tags/v2_6_2.tar.gz"
     list_url = "https://github.com/fnal-fife/ifbeam/tags"
 
+    version("2.6.3", sha256="1a0d2cc50ef73d459b3d8e29e712606b9f5ef9c8e84dc06a50a809b1cc829128")
     version("2.6.2", sha256="8297ecab83e215661097f786b88d1e1f03a50299780ff5862bf674b382288325")
     version("2.6.1", sha256="1fc548013803f2cd9c9c93fb526e6efc3519634edff07a0455019d78cc96a77e")
-    version("2.5.23", sha256="e8d11d057cbb25ec65f597c7eb9c73d463d9828c3b830866aa05e6652e305831")
-    version("2.5.22", sha256="202b29e64aef1852310f0e4a550dcb47e5c6c86d6d162683f319ff4999460d12")
-    version("2.5.17", sha256="7ecba2c84c585d3775a984a7de4a1152afc2ed60468cdce45bb380b6e28cab68")
-    version("2.5.16", sha256="827c0acbe670818fdc91283c1f4e90719c2d873a3f46459e3ed65d6d0e96297c")
-    version("2.5.2", sha256="7c1bac69dae5d3130741d9dd79295eb917e74eaadde9f808f10599db94a6a488")
-    version("2.4.8", sha256="676b43be56c51f68c189d19e8c23a68e9bc489a7e3aaedb632e7600a168d9448")
-    version("2.3.0", sha256="4b6a29443b631957ca2a7712b5c577620c6543e542ee9c77d246cef1e10f7324")
-    version("2.2.13", sha256="b341ffc73421b7187b06c205f9feaccf117bdba06509e9b1b8f491fdc182029c")
-
+    version("2.6", sha256="c156a2ba05e7b6f376b678bd53dbca53558f7127ac5bbe32083a648eeb10f1c2")
+    version("2.5.23", sha256="a0b4890045cf5efdb4f19183dd417a1f5fdfc82d62f44d989b21a55210b9aef6")
+    version("2.5.22", sha256="648246ab995b16e5da7f95b1e63c1520d71cf91af942fc8e96f4fed24fae85ff")
+    version("2.5.21", sha256="26b8abf691738a29256e14a14b1cfa50fdd709cf2462b87601cb3fa7e6d1c83d")
+    version("2.5.20", sha256="fe29c9b60a169390ab58205c3859099a1636d866af545c6e6fd315b11f11f2e7")
+    version("2.5.19", sha256="8b47f7011253d1686a31336cd3549d1e4675ad987750273d500bbeb14cf5ff22")
+    version("2.5.18", sha256="fa10d65522b744b0230cb7bdc103a01f4248428a12a98510ec1c15d9cf81c51a")
 
     parallel = False
 
