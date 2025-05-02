@@ -50,6 +50,10 @@ class Marley(MakefilePackage):
         cxxstd_flag = "cxx{0}_flag".format(self.spec.variants["cxxstd"].value)
         spack_env.append_flags("CXXFLAGS", getattr(self.compiler, cxxstd_flag))
 
+    def build(self, spec, prefix):
+        with working_dir("build"):
+            make()
+
     def install(self, spec, prefix):
         with working_dir("build"):
             make("prefix={0}".format(prefix), "install")
