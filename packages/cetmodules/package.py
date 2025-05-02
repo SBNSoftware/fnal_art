@@ -40,6 +40,16 @@ class Cetmodules(CMakePackage):
     )
     variant("docs", default=False, when="~versioned-docs", description="build documentation")
 
+
+    def patch(self):
+        if self.spec.satisfies("@3.26.00:3.27.02"):
+            filter_file(
+                r"    _include(${ARGV} OPTIONAL)",
+                "    list(APPEND ARGV OPTIONAL)\n    list(REMOVE_DUPLICATES ARGV)\n    _include(${ARGV})",
+                "Modules/compat/art/CetCMPCleaner.cmake",
+                string=True,
+            )
+
     depends_on("cmake@3.20:", when="@3.03.00:", type=("build", "run"))
     depends_on("cmake@3.21:", when="@3.22.02:", type=("build", "run"))
     depends_on("cmake@3.22:", when="@3.23.00:", type=("build", "run"))
