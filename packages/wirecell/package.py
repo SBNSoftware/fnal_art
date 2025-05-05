@@ -98,6 +98,11 @@ class Wirecell(Package):
                 "aux/src/Logger.cxx",
             )
 
+    def patch(self):
+        with open("version.txt", "w") as version_file:
+            version_file.write(f"{self.version}\n")
+
+
     def install(self, spec, prefix):
         cxxstd = self.spec.variants["cxxstd"].value
         cxxstdflag = "" if cxxstd == "default" else getattr(self.compiler, "cxx{0}_flag".format(cxxstd))
