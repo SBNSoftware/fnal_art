@@ -32,7 +32,16 @@ class Wirecell(Package):
     homepage = "https://wirecell.github.io"
     url = "https://github.com/WireCell/wire-cell-toolkit/archive/refs/tags/0.13.0.tar.gz"
 
+    version("0.30.3", sha256="cc95044a9de15cab33992084de94e07716a5c14cf2d3486b993c6ef6bad57027")
+    version("0.30.2", sha256="51cf692a9687e3124439ce824597c47e8dea38d7178161e3717602c330d74dc2")
+    version("0.30.1", sha256="cefef542978a1a10360e0b90532cde72a67763c2d2d3e8e1b39873ea61b36f45")
+    version("0.30.0", sha256="e5a5860145a821ce11d3040d71f7fb2bbfd3776820cd3808fd0cbaf33b401700")
+    version("0.29.5", sha256="2a16ae4b4e69bb570d79881f32ceb4868d2a9a16699419dd097765d45da06d03")
+    version("0.29.4", sha256="b2dcadc73b0945adbedf8fcaa0c81e0d0c400314514ae399a79b97e45d149415")
+    version("0.29.3", sha256="c8c9319cd5abe72db5bb9d5799b5463af3e996a551e17db10fd56281a36e7387")
+    version("0.29.2", sha256="7ca719da56d89dbe9ebcbb5755bbce99719a8cababb99aea8e24502f27c95e25")
     version("0.29.1", sha256="9fee2e37162a2ebed61db155319f857a504d3b2805e6c4db163c4935af80e1cd")
+    version("0.29.0", sha256="78258b3378578773ecc927639f56353b63bb852eb6fdaf4034e38cfbad62c908")
     version("0.27.1", sha256="a8410a9e0524570e811f5cca2ea9fc636e48c048a5e67c5cee567b935515e176")
     version("0.24.3", sha256="040d819a3a81b953a42c8b4bb898acf6978cee45beea0361a2f3cdb602a6028c")
     version("0.24.1", sha256="0467a4dff51abac3661aa99c5f3cc5de1ba1607a7f357631a2fbf7dcdf01c8a9")
