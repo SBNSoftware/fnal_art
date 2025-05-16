@@ -28,6 +28,7 @@ class CetlibExcept(CMakePackage, FnalGithubPackage):
     cxxstd_variant("17", "20", "23", default="17", sticky=True)
     conflicts("cxxstd=17", when="@1.10.00:")
 
+    depends_on("cxx", type="build")
     depends_on("catch2@2.3.0:2", when="@:1.08", type=("build", "test"))
     depends_on("catch2@3.3.0:", when="@1.09:", type=("build", "test"))
     depends_on("cetmodules@3.19.02:", type="build")

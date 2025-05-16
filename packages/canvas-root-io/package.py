@@ -39,6 +39,7 @@ class CanvasRootIo(CMakePackage, FnalGithubPackage):
     cxxstd_variant("17", "20", "23", default="17", sticky=True)
     conflicts("cxxstd=17", when="@1.14.00:")
 
+    depends_on("cxx", type="build")
     depends_on("boost+thread")
     depends_on("canvas")
     depends_on("cetlib")

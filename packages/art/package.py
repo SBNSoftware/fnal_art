@@ -41,6 +41,7 @@ class Art(CMakePackage, FnalGithubPackage):
     cxxstd_variant("17", "20", "23", default="17", sticky=True)
     conflicts("cxxstd=17", when="@3.15.00:")
 
+    depends_on("cxx", type="build")
     depends_on("boost@:1.82", when="@:3.15")
     depends_on("boost+date_time+graph+program_options+regex")
     depends_on("boost@1.75: +filesystem+json+test+thread", type=("build"))
