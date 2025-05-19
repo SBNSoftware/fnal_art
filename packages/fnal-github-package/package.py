@@ -54,7 +54,11 @@ def sanitize_paths(f):
     @wraps(f)
     def wrapped_setup_build_environment(pkg, env, *extra_args):
         f(pkg, env, *extra_args)
-        paths = [mod.name for mod in env.env_modifications if type(mod) == PrependPath]
+        paths = [
+            mod.name
+            for mod in env.env_modifications
+            if mod.isinstance(PrependPath) and mod.name != "SPACK_COMPILER_WRAPPER_PATH"
+        ]
         sanitize_environment(env, *paths)
 
     return wrapped_setup_build_environment
