@@ -57,7 +57,7 @@ def sanitize_paths(f):
         paths = [
             mod.name
             for mod in env.env_modifications
-            if mod.isinstance(PrependPath) and mod.name != "SPACK_COMPILER_WRAPPER_PATH"
+            if isinstance(mod, PrependPath) and mod.name != "SPACK_COMPILER_WRAPPER_PATH"
         ]
         sanitize_environment(env, *paths)
 
