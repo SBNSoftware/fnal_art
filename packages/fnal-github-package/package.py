@@ -89,7 +89,8 @@ def cxxstd_variant(*cxxstd_options, **kwargs):
     disallowed_present = set(kwargs.keys()) & _disallowed_kwargs
     if disallowed_present:
         tty.die(
-            f"The following keyword arguments cannot be specified to cxxstd_variant: {disallowed_present}"
+            "The following keyword arguments cannot be specified "
+            f"to cxxstd_variant: {disallowed_present}"
         )
 
     variant(
