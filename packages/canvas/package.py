@@ -34,6 +34,7 @@ class Canvas(CMakePackage, FnalGithubPackage):
     cxxstd_variant("17", "20", "23", default="17", sticky=True)
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:3.17.00", type="build")
     depends_on("boost+date_time+test")
     depends_on("cetlib")
     depends_on("cetlib-except")

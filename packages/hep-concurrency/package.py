@@ -29,6 +29,7 @@ class HepConcurrency(CMakePackage, FnalGithubPackage):
     conflicts("cxxstd=17", when="@1.10.00:")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:1.10.00", type="build")
     depends_on("catch2@2.3.0:2", when="@:1.08", type=("build", "test"))
     depends_on("catch2@3.3.0:", when="@1.09:", type=("build", "test"))
     depends_on("cetlib-except")

@@ -34,6 +34,7 @@ class Gallery(CMakePackage, FnalGithubPackage):
     conflicts("cxxstd=17", when="@1.23.00:")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:1.23.00", type="build")
     depends_on("canvas")
     depends_on("canvas-root-io")
     depends_on("cetlib")

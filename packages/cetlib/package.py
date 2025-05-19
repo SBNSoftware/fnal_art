@@ -35,6 +35,7 @@ class Cetlib(CMakePackage, FnalGithubPackage):
     patch("test_build.patch", when="@:3.16.00")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:3.19.00", type="build")
     depends_on("boost+regex+program_options+filesystem+system+test")
     depends_on("cetlib-except")
     depends_on("hep-concurrency", when="@3.18.01:", type=("build", "test"))

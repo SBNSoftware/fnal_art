@@ -34,6 +34,7 @@ class FhiclCpp(CMakePackage, FnalGithubPackage):
     conflicts("cxxstd=17", when="@4.19.00:")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:4.19.01", type="build")
     depends_on("boost@:1.82", when="@:4.19")
     depends_on("boost+program_options+test")
     depends_on("cetlib")

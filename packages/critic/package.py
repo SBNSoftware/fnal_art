@@ -51,6 +51,7 @@ class Critic(CMakePackage, FnalGithubPackage):
     conflicts("cxxstd=17", when="@2.14.00:")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:2.14.00", type="build")
     depends_on("art")
     depends_on("art-root-io")
     depends_on("canvas")

@@ -35,6 +35,7 @@ class Messagefacility(CMakePackage, FnalGithubPackage):
     conflicts("cxxstd=17", when="@2.11.00:")
 
     depends_on("cxx", type="build")
+    depends_on("c", when="@:2.11.00", type="build")
     depends_on("boost+filesystem+program_options+system")
     depends_on("catch2@3.3.0:", when="@2.10.00:")
     depends_on("catch2@2.3.0:2", when="@:2.09", type=("build", "test"))
