@@ -14,6 +14,9 @@ class PyDash(PythonPackage):
 
     version("2.0.0", sha256="29277c24e2f795b069cb102ce1ab0cd3ad5cf9d3b4fd16c03da9671a5eea28a4")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-setuptools", type="build")
     depends_on("py-flask", type=("build", "run"))
     depends_on("py-flask-compress", type=("build", "run"))

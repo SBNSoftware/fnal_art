@@ -15,6 +15,9 @@ class PyPlotlyScientificPlots(PythonPackage):
 
     version("0.1.0.6", sha256="cc00d2ca8e90430ac513e1447dbef86d2dfe8a5367e5e10eaaabaca6b89d0b7c")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-setuptools", type="build")
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))

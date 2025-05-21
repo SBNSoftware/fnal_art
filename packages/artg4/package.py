@@ -39,6 +39,9 @@ class Artg4(CMakePackage):
 
     variant("cxxstd", default="17")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("cetbuildtools", type=("build"))
     depends_on("cetmodules", type=("build"))
     depends_on("boost", type=("build","run"))

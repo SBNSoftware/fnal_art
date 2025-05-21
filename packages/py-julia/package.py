@@ -16,6 +16,9 @@ class PyJulia(PythonPackage):
 
     version("0.5.6", sha256="378d0377f75bb0e3bfc4cce19a56d3bf5a9a7be38e370e3a7cf3359bf4cd0378")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-setuptools", type="build")
     depends_on("julia", type=("build", "run"))
 

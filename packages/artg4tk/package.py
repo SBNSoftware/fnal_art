@@ -46,6 +46,9 @@ class Artg4tk(CMakePackage):
     patch("cetmodules2-c06a0ed7a0a543cba5c23fc588f7dd6dcb6609e2.patch", when="@c06a0ed7a0")
     patch("11.00.01.patch", when="@11.00.01")
     # patch('mwm.patch')
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
     depends_on("art")

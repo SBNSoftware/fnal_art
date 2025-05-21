@@ -32,6 +32,9 @@ class Libpqxx(CMakePackage):
     version("7.5.2", sha256="62e140667fb1bc9b61fa01cbf46f8ff73236eba6f3f7fbcf98108ce6bbc18dcd")
     version("7.5.1", sha256="16a3a4097a6772a9824ba584dbe5a1feee163ab954b94497358fe591eb236e3d")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("postgresql")
 
     def cmake_args(self):

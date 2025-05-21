@@ -35,6 +35,9 @@ class IfdhcConfig(Package):
 
     parallel = False
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     def url_for_version(self, version):
         url = "https://github.com/fnal-fife/ifdhc/archive/refs/tags/v{0}.tar.gz"
         return url.format(version.underscored)

@@ -33,6 +33,9 @@ class Ifdhc(MakefilePackage):
     version("2.6.6", sha256="8ba4929ecefa5720ea999e39671a48b56a65f5f44ff99f2f473f9cd47277051e")
     version("develop", git=git_base, branch="develop", get_full_repo=True)
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("python")
     depends_on("swig", type="build", when="@:2.5.0")
     depends_on("zlib")

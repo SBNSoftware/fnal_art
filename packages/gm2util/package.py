@@ -21,6 +21,9 @@ class Gm2util(CMakePackage):
         # url = 'https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz'
         return url.format(self.name, version.underscored)
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("cetpkgsupport", type=("build", "run"))
     depends_on("artg4", type=("build", "run"))
     depends_on("libpqxx", type=("build", "run"))

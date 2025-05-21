@@ -68,6 +68,9 @@ class Genie(AutotoolsPackage):
 
     variant("lhapdf", default=True) 
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # Use mainline spack gettext for lhapdf
     depends_on("lhapdf" , when="+lhapdf")
 

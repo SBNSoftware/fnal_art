@@ -15,6 +15,9 @@ class PyGrpcioTools(PythonPackage):
     version("1.58.0", sha256="6f4d80ceb591e31ca4dceec747dbe56132e1392a0a9bb1c8fe001d1b5cac898a")
     version("1.35.0", sha256="9e2a41cba9c5a20ae299d0fdd377fe231434fa04cbfbfb3807293c6ec10b03cf")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("python@3.5:", when="@1.30:", type=("build", "run"))
     depends_on("python@2.7:2.8,3.5:", type=("build", "run"))
     depends_on("py-setuptools", type="build")

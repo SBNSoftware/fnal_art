@@ -18,4 +18,7 @@ class PyJltheme(PythonPackage):
 
     version("0.1.2", sha256="75361cbd59c835d7d71b8c9c23dd9ddf4644bf67d7e2a42afa260de7c39aa028")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-jupyter", type=("run"))

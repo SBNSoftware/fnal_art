@@ -47,6 +47,9 @@ class Wibtools(CMakePackage):
     version("0.01.03", sha256="5985196dac09f13d5f2d9b10ddc5416aac8b5951e288db88f56dce086c5d6769")
     version("0.01.00", sha256="a180cc6dedfebc1f7cf4d51825babd294d67cf06b6e4b6973c65290abe0bde82")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("boost")
     depends_on("trace", type="build")
     depends_on("messagefacility")

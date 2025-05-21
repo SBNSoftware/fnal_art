@@ -29,6 +29,9 @@ class Crc32c(CMakePackage):
     version("1.1.1", sha256="a6533f45b1670b5d59b38a514d82b09c6fb70cc1050467220216335e873074e8")
     version("1.1.0", sha256="49de137bf1c2eb6268d5122674f7dd1524b9148ba65c7b85c5ae4b9be104a25a")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # FIXME: Add dependencies if required.
 
     def cmake_args(self):

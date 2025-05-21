@@ -15,6 +15,9 @@ class PyIpywe(PythonPackage):
 
     version("0.1.3a1", sha256="3fa853fc6ed12ac4bfcf7724641f7b32d4b1bc0815a27cf698559d83b45298ed")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-setuptools", type="build")
     depends_on("py-ipywidgets", type=("build", "run"))
 

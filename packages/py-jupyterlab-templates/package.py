@@ -15,6 +15,9 @@ class PyJupyterlabTemplates(PythonPackage):
 
     version("0.3.1", sha256="7ee348ea0318033fcbd9274658c418d6cadafe89e9b3197e89c97f1cfde3eaff")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-jupyter-packaging", type="build")
     depends_on("py-setuptools", type="build")
     depends_on("py-jupyter", type=("build", "run"))

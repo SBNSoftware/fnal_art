@@ -48,6 +48,9 @@ class IcarusSignalProcessing(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # Build-only dependencies.
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")

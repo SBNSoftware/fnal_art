@@ -21,6 +21,9 @@ class Triton(CMakePackage):
 
     variant("cuda", default=False)
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("patchelf", type=("build"))
 
     depends_on("curl", type=("build","run"))

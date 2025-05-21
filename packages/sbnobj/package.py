@@ -69,6 +69,9 @@ class Sbnobj(CMakePackage):
     patch("v09_12_04.patch", when="@09.12.04")
     patch("cetmodules2.patch", when="@develop")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # Build-only dependencies.
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")

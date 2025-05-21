@@ -18,6 +18,9 @@ class ArtdaqRuncontrolGui(CMakePackage):
 
     version("1.03.04", sha256="57273320a95de6abacf4a853b53507710bb505a3e33dd09b74e3fd1b0e2e94ea")
     
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("artdaq-daqinterface")
     depends_on("qt")
     depends_on("xmlrpc-c")
