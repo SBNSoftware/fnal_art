@@ -18,6 +18,9 @@ class GoogleBenchmark(CMakePackage):
     version("1.5.2", sha256="dccbdab796baa1043f04982147e67bb6e118fe610da2c65f88912d73987e700c")
     version("1.5.1", sha256="23082937d1663a53b90cb5b61df4bcc312f6dee7018da78ba00dd6bd669dfef2")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("googletest")
 
     def patch(self):

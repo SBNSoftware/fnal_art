@@ -40,6 +40,9 @@ class Nucondb(MakefilePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("ifdhc")
     depends_on("ifbeam")
     depends_on("libwda")

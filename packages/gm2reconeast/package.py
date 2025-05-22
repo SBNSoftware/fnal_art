@@ -25,6 +25,9 @@ class Gm2reconeast(CMakePackage):
 
     variant("cxxstd", default="17")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("pkgconfig", type="build")
     depends_on("cetpkgsupport", type=("build"))
     depends_on("cetbuildtools", type=("build"))

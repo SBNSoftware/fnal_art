@@ -29,6 +29,9 @@ class Libwda(MakefilePackage):
 
     build_directory = "src"
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("curl")
     depends_on("zlib")
     depends_on("openssl")

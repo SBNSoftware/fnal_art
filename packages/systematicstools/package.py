@@ -40,6 +40,9 @@ class Systematicstools(CMakePackage):
 
     version("01_04_02", sha256="0e14b9736b31b7911307e8703d0f386f2a1fb5c1dcaa69a8d7ce9916afb974cd")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # FIXME: Add dependencies if required.
     depends_on("art-root-io")
     depends_on("cetmodules", type="build")

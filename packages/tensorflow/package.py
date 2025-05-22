@@ -27,6 +27,9 @@ class Tensorflow(Package):
     patch("patch/tensorflow.patch", level=2, when="cxxstd=14")
     patch("patch/tensorflow_cxx17.patch", level=2, when="cxxstd=17")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("protobuf")
 
     def patch(self):

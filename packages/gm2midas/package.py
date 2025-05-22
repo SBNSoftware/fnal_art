@@ -55,6 +55,9 @@ class Gm2midas(MakefilePackage):
 
     variant("cxxstd", default="17")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("root", type=("build", "run"))
     depends_on("zlib", type=("build", "run"))
     depends_on("openssl", type=("build", "run"))

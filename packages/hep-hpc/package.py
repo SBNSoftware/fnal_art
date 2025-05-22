@@ -29,6 +29,9 @@ class HepHpc(CMakePackage):
 
     variant("mpi", default=False, description="build with MPI support")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("googletest", type="build")
     depends_on("hdf5")
     depends_on("mpi", when="+mpi")

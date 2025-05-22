@@ -40,6 +40,9 @@ class Nusystematics(CMakePackage):
 
     version("01_03_12", sha256="53300aa8bc604d06858a8a01f3ca6e59526d524375f24d6ae728f6d21e027898")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("nugen")
     depends_on("systematicstools")
     depends_on("nufinder")

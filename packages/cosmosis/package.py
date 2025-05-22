@@ -74,6 +74,9 @@ class Cosmosis(MakefilePackage):
         when="@1.6.2",
     )
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("py-configparser")
     depends_on("py-future")
     depends_on("py-ipython")

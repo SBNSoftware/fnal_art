@@ -38,6 +38,9 @@ class PrometheusCpp(CMakePackage):
     version("0.12.0", sha256="a605904a2d40bc823bb121b2d25eb26b61065e29f0baaee6590b8058808a2cef")
     version("0.11.0", sha256="396a31ec459e0c676c75a4cc94ab33c0728949b4d32b1d3418262cc6acc16d1b")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("pkgconfig")
 
     def cmake_args(self):

@@ -40,6 +40,9 @@ class Castxml(CMakePackage):
     version("0.2.1", sha256="1f01149af1c58e59500e24cade8033e98a16001aa6a0f666643bbc9e303a82b0")
     version("0.2.0", sha256="626c395d0d3c777b5a1582cdfc4d33d142acfb12204ebe251535209126705ec1")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     # FIXME: Add dependencies if required.
     depends_on('llvm@15.0.7')
 

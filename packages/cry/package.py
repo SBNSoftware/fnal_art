@@ -31,6 +31,9 @@ class Cry(MakefilePackage):
 
     parallel = False
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     variant(
         "cxxstd",
         default="17",

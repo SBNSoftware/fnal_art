@@ -24,6 +24,9 @@ class Libevhtp(CMakePackage):
     version("1.2.16", sha256="4c3f510b15873e9fc29299de0c5d4d257d1d910710e104e33439a17c27fc414b")
     version("1.2.15", sha256="f78ee8a34492e266fc1b6b9d4003825659df672da1cf918120217a0ee0d14ed3")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("cmake", type="build")
     depends_on("libevent")
     depends_on("openssl")

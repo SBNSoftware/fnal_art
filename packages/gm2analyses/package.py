@@ -22,6 +22,9 @@ class Gm2analyses(CMakePackage):
 
     version("9.60.00", sha256="1efd2e99333d99c8fcbaa6743e5e5b86aa0f6d93f7c2c7db823ff08980feedde")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("pkgconfig", type="build")
     depends_on("cetpkgsupport", type=("build"))
     depends_on("cetbuildtools", type=("build"))

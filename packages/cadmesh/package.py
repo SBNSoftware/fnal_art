@@ -13,6 +13,9 @@ class Cadmesh(CMakePackage):
     homepage = "https://github.com/christopherpoole/CADMesh/"
     url = "https://github.com/christopherpoole/CADMesh/archive/refs/tags/v2.0.3.tar.gz"
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("pkgconfig", type=("build"))
     depends_on("geant4", type=("build", "run"))
     depends_on("clhep", type=("build", "run"))

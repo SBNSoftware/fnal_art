@@ -40,6 +40,9 @@ class Pandora(CMakePackage):
        description="Enable PandoraMonitoring when building."
     )
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
     depends_on("root +opengl", when="+monitoring")
     depends_on("root ~opengl", when="~monitoring")
 
