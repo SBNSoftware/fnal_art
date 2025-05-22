@@ -15,9 +15,6 @@ class PyPyinotify(PythonPackage):
 
     version("0.9.6", sha256="9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-setuptools", type="build")
 
     def build_args(self, spec, prefix):

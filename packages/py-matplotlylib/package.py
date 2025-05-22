@@ -16,9 +16,6 @@ class PyMatplotlylib(PythonPackage):
 
     version("0.1.0", sha256="c7f5fa7f842742d9385b6961f88b9a992a749391a5f7229cc8be325f712c1fce")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-setuptools", type="build")
     depends_on("py-plotly", type=("build", "run"))
 

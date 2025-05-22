@@ -31,9 +31,6 @@ class PyJupyterFullWidth(PythonPackage):
 
     version("1.2.0", sha256="9227f315962ce49713f6a9a5f58ca1985ccc666f2f77dc9429fe600b4ad0afd2")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-jupyter", type="run")
 
     def build_args(self, spec, prefix):

@@ -31,9 +31,6 @@ class PyJupyterlabLauncher(PythonPackage):
 
     version("0.13.1", sha256="f880eada0b8b1f524d5951dc6fcae0d13b169897fc8a247d75fb5beadd69c5f0")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-setuptools", type="build")
     depends_on("py-jupyter", type=("build", "run"))
 

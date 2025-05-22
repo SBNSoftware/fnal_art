@@ -15,9 +15,6 @@ class PyRplotmaker(PythonPackage):
 
     version("1.0.6", sha256="3e7b25f18472646800cd94022cd3d02620c74f13253efc40b39790c7b9ca072e")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-setuptools", type="build")
     depends_on("r", type=("build", "run"))
 

@@ -22,9 +22,6 @@ class PySrproxy(Package):
     version("00.15", sha256="90bed72a1a2924132171d108799698602a28a4143ca2234d0ee988d80bd60d83")
     version("00.14", sha256="fc8c12331e2dcaaa0d5063dd86ae8b65f1221d1505ddb14a4490e6f23019d510")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("castxml")
     depends_on("py-pygccxml")
 

@@ -15,9 +15,6 @@ class PyJupyterlabWidgets(PythonPackage):
 
     version("1.0.2", sha256="7885092b2b96bf189c3a705cc3c412a4472ec5e8382d0b47219a66cccae73cfa")
 
-    depends_on("c", type="build")
-    depends_on("cxx", type="build")
-
     depends_on("py-jupyter-packaging", type="build")
     depends_on("py-setuptools", type="build")
     depends_on("py-jupyter", type=("build", "run"))
