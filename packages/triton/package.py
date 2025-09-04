@@ -4,9 +4,8 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 
-import os
-
 from spack.package import *
+import os
 
 
 class Triton(CMakePackage):
@@ -17,6 +16,7 @@ class Triton(CMakePackage):
 
     maintainers = ["marcmengel"]
 
+    version( "22.08", sha256="9f56056c4af2a08da48756a810c16449678ffb4af11d34c3e139f459f4c70553")
     version( "23.09", sha256="33ece9b6a0ee3c6b198afde5e955ec53bb5c2c30eafbb80f9bd940619f14307b")
 
     variant("cuda", default=False)

@@ -1,0 +1,119 @@
+diff -Naur CMakeLists.txt CMakeLists.txt
+--- CMakeLists.txt	2024-09-25 00:59:26.370055851 -0500
++++ CMakeLists.txt	2024-09-24 18:09:48.918266734 -0500
+@@ -80,7 +80,7 @@
+ find_package(ROOT REQUIRED )
+ find_package(Boost COMPONENTS system program_options REQUIRED)
+ find_package(PandoraSDK REQUIRED )
+-find_package(PandoraMonitoring REQUIRED )
++# find_package(PandoraMonitoring REQUIRED )
+ find_package(SQLite3 REQUIRED )
+ find_package(artdaq_core REQUIRED )
+ find_package(sbndaq_artdaq_core REQUIRED )
+@@ -88,8 +88,8 @@
+ find_package(Microsoft.GSL HINTS $ENV{GUIDELINE_SL_DIR} REQUIRED EXPORT)
+ 
+ find_package(FFTW3f REQUIRED )
+-find_package(FFTW3q REQUIRED )
+-find_package(FFTW3l REQUIRED )
++# find_package(FFTW3q REQUIRED )
++# find_package(FFTW3l REQUIRED )
+ 
+ # macros for dictionary and simple_plugin
+ include(ArtDictionary)
+diff -Naur icaruscode/CRT/CMakeLists.txt icaruscode/CRT/CMakeLists.txt
+--- icaruscode/CRT/CMakeLists.txt	2024-09-25 00:24:52.579240509 -0500
++++ icaruscode/CRT/CMakeLists.txt	2024-09-24 23:48:28.013730947 -0500
+@@ -415,7 +415,7 @@
+               ROOT::XMLIO
+               ROOT::Gdml
+               ROOT::Tree
+-              ROOT::Spectrum
++              ${ROOT_SPECTRUM}
+               ROOT::RooFit
+               ROOT::RooFitCore
+ )
+@@ -449,7 +449,7 @@
+               ROOT::Geom
+               ROOT::XMLIO
+               ROOT::Gdml
+-              ROOT::Spectrum
++              ${ROOT_SPECTRUM}
+               ROOT::RooFit
+               ROOT::RooFitCore
+ )
+@@ -481,7 +481,7 @@
+               ROOT::Geom
+               ROOT::XMLIO
+               ROOT::Gdml
+-              ROOT::Spectrum
++              ${ROOT_SPECTRUM}
+               ROOT::RooFit
+               ROOT::RooFitCore
+ )
+@@ -511,7 +511,7 @@
+               ROOT::Geom
+               ROOT::XMLIO
+               ROOT::Gdml
+-              ROOT::Spectrum
++              ${ROOT_SPECTRUM}
+               ROOT::RooFit
+               ROOT::RooFitCore
+ 
+diff -Naur icaruscode/CRT/CRTDecoder/CMakeLists.txt icaruscode/CRT/CRTDecoder/CMakeLists.txt
+--- icaruscode/CRT/CRTDecoder/CMakeLists.txt	2024-09-25 00:24:41.630972277 -0500
++++ icaruscode/CRT/CRTDecoder/CMakeLists.txt	2024-09-25 00:22:57.684425627 -0500
+@@ -22,7 +22,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Graf
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		ROOT::Core
+ 		ROOT::Gpad
+@@ -37,7 +37,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Core
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		cetlib::cetlib
+ 	)
+@@ -50,7 +50,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Core
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		cetlib::cetlib
+ 	)
+@@ -63,7 +63,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Core
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		cetlib::cetlib ROOT::Tree
+ 		CRT_RAW_TREE
+@@ -78,7 +78,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Core
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		cetlib::cetlib
+ 	)
+@@ -91,7 +91,7 @@
+ 	LIBRARIES
+ 		cetlib_except::cetlib_except
+ 		ROOT::Core
+-		ROOT::Spectrum
++		${ROOT_SPECTRUM}
+ 		ROOT::Geom
+ 		ROOT::Tree
+ 		cetlib::cetlib

@@ -1,0 +1,17 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index b053922..3e8c41c 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -45,6 +45,12 @@ lib: obj
+ 	@echo
+ 	@if [ `${LARCV_PYTHON} ${LARCV_BASEDIR}/bin/libarg.py build` ]; then \
+ 	   echo Linking library...; \
++	   #echo $(SOMAKER)
++	   echo $(SOFLAGS)
++	   echo $(shell ${LARCV_PYTHON} $(LARCV_BASEDIR)/bin/libarg.py)
++	   echo ${LARCV_PYTHON}
++	   echo $(LARCV_BASEDIR)/bin/libarg.py
++	   echo $(LARCV_BASEDIR)
+ 	   $(SOMAKER) $(SOFLAGS) $(shell ${LARCV_PYTHON} $(LARCV_BASEDIR)/bin/libarg.py); \
+ 	 else \
+ 	   echo Nothing to be done for lib...; \

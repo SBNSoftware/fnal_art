@@ -1,0 +1,18 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index b053922..8cf8abd 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -1,3 +1,4 @@
++include Makefile/Makefile.${OSNAME}
+ 
+ ifndef LARCV_BASEDIR
+ ERROR_MESSAGE := $(error LARCV_BASEDIR is not set... run configure.sh!)
+@@ -10,8 +11,6 @@ OSNAME          = $(shell uname -s)
+ HOST            = $(shell uname -n)
+ OSNAMEMODE      = $(OSNAME)
+ 
+-include $(LARCV_BASEDIR)/Makefile/Makefile.${OSNAME}
+-
+ CORE_SUBDIRS := Base DataFormat Processor CPPUtil
+ ifeq ($(LARCV_NUMPY),1)
+ CORE_SUBDIRS += PyUtil
