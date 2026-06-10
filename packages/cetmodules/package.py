@@ -21,6 +21,10 @@ class Cetmodules(CMakePackage):
 
     version("develop", branch="develop", get_full_repo=True)
 
+    version("4.01.01", sha256="3e72cb7a3e8742269547e140016c4867786b2d9a4216007e0db7faef1af93a73")
+    version("4.01.00", sha256="0b9eda8a0becdfa2306d770b6bf0498fcde5e62b581959463f5205aaea9201d6")
+    version("4.00.00", sha256="46a305c1036d3227c71f98cab2f32b3e28bfa076173ac8b37f82136a94033d37")
+    version("3.27.03", sha256="30553c68dd1aa3a48901082217c4306e62bdca2ac25a00445d89125e9894b162")
     version("3.27.02", sha256="b6d902b283ef1d7a7ad46da1356826427a1957228ffe8cb7d7fb063ce7ca6d30")
     version("3.27.01", sha256="5e64b874eb4953ad62c0de4ae8c279f0638e4a13b8c9515e50890c9952a73ee9")
     version("3.27.00", sha256="6926fd8df351713bce0382ab57760d398437687e24da40bbd1306d6b17d86661")
@@ -40,9 +44,20 @@ class Cetmodules(CMakePackage):
     )
     variant("docs", default=False, when="~versioned-docs", description="build documentation")
 
+
+    def patch(self):
+        if self.spec.satisfies("@3.26.00:3.27.02"):
+            filter_file(
+                r"    _include(${ARGV} OPTIONAL)",
+                "    list(APPEND ARGV OPTIONAL)\n    list(REMOVE_DUPLICATES ARGV)\n    _include(${ARGV})",
+                "Modules/compat/art/CetCMPCleaner.cmake",
+                string=True,
+            )
+
     depends_on("cmake@3.20:", when="@3.03.00:", type=("build", "run"))
     depends_on("cmake@3.21:", when="@3.22.02:", type=("build", "run"))
     depends_on("cmake@3.22:", when="@3.23.00:", type=("build", "run"))
+    depends_on("cmake@3.24:", when="@4.00.00:", type=("build", "run"))
 
     with when("+versioned-docs") or when("+docs"):
         depends_on("git@2.22:", type="build")
